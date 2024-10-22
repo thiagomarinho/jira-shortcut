@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "Jira Shortcut",
+  "version": "1.0",
+  "options_page": "options.html",
+  "permissions": ["tabs", "storage", "notifications"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "omnibox": {
+    "keyword": "#"
+  }
+}
