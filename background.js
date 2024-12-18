@@ -31,6 +31,13 @@ chrome.omnibox.onInputEntered.addListener((text) => {
 
     const finalUrl = `${baseUrl}/${issue}`;
 
-    chrome.tabs.create({ url: finalUrl });
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      const currentTab = tabs[0];
+      if (currentTab && currentTab.url === 'chrome://newtab/') {
+        chrome.tabs.update(currentTab.id, { url: finalUrl });
+      } else {
+        chrome.tabs.create({ url: finalUrl });
+      }
+    });
   });
 });
